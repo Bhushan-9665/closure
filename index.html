@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <pre>
+
+        Que -1
+            function counter(){
+                var counter = 0;
+            
+                function IncreaseCounter() {
+                    return counter += 1;
+                };
+            
+                return IncreaseCounter;
+            }
+            
+            var counter = counter();
+            alert(counter());
+            alert(counter());
+            alert(counter());
+            alert(counter());
+
+
+
+        Output:-
+        1
+        2
+        3
+        4  
+    </pre>
+
+    <hr>
+
+    <pre>
+
+    Que-2
+        let count = 0;
+        (function () {
+        if (count === 0) {
+            let count = 1;
+            console.log(count); // This will log the local count, which is 1.
+        }
+        console.log(count); // This will log the global count, which is 0.
+        })();
+ 
+    Output:-
+        1  - This will log the local count, which is 1.
+        0  - This will log the global count, which is 0.
+
+    </pre>
+
+<hr>
+    <pre>
+    Que-3
+        for (var i = 0; i < 3; i++) {
+            setTimeout(function log(){
+            console.log(i); // Respective value of i - "i < 3" (0, 1, 2)
+            }, 1000);
+        }
+
+
+    Output -
+    3
+    3
+    3
+
+    </pre>
+<hr>
+    <pre>
+    Que-4
+        Write a code to calculate area of a rectangle using inner function. In this case outer function should accept 
+        parameter length and inner function should accept parameter breadth.
+
+
+    Output-
+        function calculateArea(length) {
+            function calculateInnerArea(breadth) {
+            return length * breadth;
+            }
+        
+            return calculateInnerArea;
+        }
+        
+        const length = 5;
+        const breadth = 8;
+        const areaCalculator = calculateArea(length);
+        const area = areaCalculator(breadth);
+        console.log("Area of the rectangle:", area);
+
+    </pre>
+<hr>
+    <pre>
+    Que-5
+        Take a variable in outer function and create an inner function to increase the counter every time it is called
+
+    Ans-
+    function outerFunction() {
+        let counter = 0;
+      
+        function innerFunction() {
+          counter++;
+          console.log(`Counter value: ${counter}`);
+        }
+      
+        return innerFunction;
+      }
+
+      const counterFunction = outerFunction();
+      
+      counterFunction(); 
+      counterFunction(); 
+      counterFunction(); 
+
+      Output-
+      1
+      2
+      3
+
+    </pre>
+<hr>
+    <pre>
+    Que-6
+        var a = 12;
+        (function () {
+        alert(a);
+        })();
+
+    Output-
+        13
+    
+    </pre>
+<hr>
+    <pre>
+    Que-7
+        var a = 10;
+        var x = (function () {
+        var a = 12;
+        return function () {
+            alert(a);
+        };
+        })();
+        x();
+
+    Outout-
+        12
+    </pre>
+<hr>
+    <pre>
+    Que-8
+    var globalVar = "xyz";
+
+    (function outerFunc(outerArg) {
+        var outerVar = 'a';
+        
+        (function innerFunc(innerArg) {
+        var innerVar = 'b';
+        
+        console.log(
+            "outerArg = " + outerArg + "\n" +
+            "innerArg = " + innerArg + "\n" +
+            "outerVar = " + outerVar + "\n" +
+            "innerVar = " + innerVar + "\n" +
+            "globalVar = " + globalVar);
+        
+        })(456);
+    })(123);
+
+    Output-
+        outerArg = 123
+        innerArg = 456
+        outerVar = a
+        innerVar = b
+        globalVar = xyz
+        
+    </pre>
+
+
+
+</body>
+</html>
